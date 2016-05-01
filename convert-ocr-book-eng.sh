@@ -3,9 +3,12 @@
 inputfolder="$1"
 basepath=$(pwd $(dirname "$1"))
 foldername=$(basename "$1")
+scriptpath=$(pwd $(dirname "$0"))
 #echo Input Folder $inputfolder
 #echo Base Path $basepath
 #echo Folder Name $foldername
+
+shopt -s nocaseglob
 
 cd "$inputfolder"
 [ -e out1 ] && rm -Rf out1
@@ -22,6 +25,6 @@ cp /usr/share/tesseract-ocr/tessdata/configs/hocr .
 for file in *.tif
 do
     tesseract $file tesseract-out-temp -l eng +hocr
-    hocr2txt.py tesseract-out-temp.hocr >> $basepath/$foldername.txt
+    $scriptpath/hocr2txt.py tesseract-out-temp.hocr >> $basepath/$foldername.txt
 done
 cd ../..

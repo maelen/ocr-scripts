@@ -18,7 +18,7 @@ scantailor-cli -v --content-detection=cautious --orientation=left --margins=5 --
 
 echo Converting scanned pages to text
 cd out1
-cp /usr/share/tesseract-ocr/tessdata/configs/hocr .
+cp /usr/share/tesseract-ocr/4.00/tessdata/configs/hocr .
 for file in *.tif
 do
     tesseract $file tesseract-out-temp -l fra +hocr
